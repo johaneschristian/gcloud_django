@@ -9,6 +9,6 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
 COPY . $DockerHome
 RUN pip install -r requirements.txt
-EXPOSE 8000
+EXPOSE 8080
 
-ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8080"]
