@@ -1,5 +1,8 @@
+name: deploy-production
+on: [push]
+branches: [master]
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/gcloud_django/ppl-one-day-intern:$SHORT_SHA', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/gcloud_django/ppl-one-day-intern:$SHORT_SHA']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/gcloud_django/ppl-one-day-intern:$SHORT_SHA', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/gcloud_django/ppl-one-day-intern:$SHORT_SHA']
