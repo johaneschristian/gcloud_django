@@ -3,7 +3,7 @@ import os
 
 
 def hello_world(request):
-    return JsonResponse(data='Hello World', safe=False)
+    return JsonResponse(data='Hella World, It\'s Me', safe=False)
 
 
 def get_cloud_run_url(request):
