@@ -6,7 +6,7 @@ WORKDIR $DockerHome
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ARG arg_database_url
-ENV DATABASE_URL=$arg_database_url
+ENV DATABASE_URL_PALSU=$arg_database_url
 
 RUN pip install --upgrade pip
 COPY . $DockerHome
