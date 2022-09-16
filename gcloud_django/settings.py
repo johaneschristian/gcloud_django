@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-jfxp1+qg&8__tbmj3do@9d-8a6wr#o)9p5&9&no0fxa6ut4jgc
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-CLOUDRUN_SERVICE_URL = env('CLOUDRUN_SERVICE_URL')
+CLOUDRUN_SERVICE_URL = env('CLOUDRUN_SERVICE_URL', default=None)
 
 if CLOUDRUN_SERVICE_URL:
     CSRF_TRUSTED_ORIGINS = [CLOUDRUN_SERVICE_URL]
