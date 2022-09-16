@@ -9,10 +9,10 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
+from urllib.parse import urlparse
 from pathlib import Path
 import os
 import dj_database_url
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,8 +29,12 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
 CLOUDRUN_SERVICE_URL = os.getenv('CLOUDRUN_SERVICE_URL')
+
 if CLOUDRUN_SERVICE_URL:
+    ALLOWED_HOSTS.append(urlparse(CLOUDRUN_SERVICE_URL))
     CSRF_TRUSTED_ORIGINS = [CLOUDRUN_SERVICE_URL]
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Application definition
 
