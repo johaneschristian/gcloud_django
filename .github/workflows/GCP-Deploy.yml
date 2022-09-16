@@ -30,5 +30,9 @@ jobs:
       - name: Push Docker image
         run: docker push $IMAGE_NAME
 
+      - name: Run Database Migration
+        run: gcloud builds submit --config cloudmigrate.yaml \
+            --substitutions _INSTANCE_NAME={{ secrets.GCP_POSTGRES_INSTANCE_NAME }},_REGION={{ secrets.GCP_POSTGRES_REGION }}
+
       - name: Deploy Docker image
         run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed
