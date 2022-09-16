@@ -1,11 +1,13 @@
 name: Development
 on:
   push:
-    branches:
-      - '*'
+    branches-ignore:
+      - 'master'
+      - 'staging'
   pull_request:
-    branches:
-      - '*'
+    branches-ignore:
+      - 'master'
+      - 'staging'
 
 jobs:
   test:

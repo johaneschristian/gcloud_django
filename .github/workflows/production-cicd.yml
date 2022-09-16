@@ -8,6 +8,24 @@ on:
       - 'master'
 
 jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Python 3.8.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8.10
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Collect Static Files
+        run: python manage.py collectstatic --no-input
+      - name: Run Test
+        run: python manage.py test
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
   deploy:
     needs: test
     if: github.ref == 'refs/heads/master'
