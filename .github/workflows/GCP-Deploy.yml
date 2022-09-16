@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build Docker image
-        run: docker build . -t --build-arg database_url=${{ secrets.DATABASE_URL }} $IMAGE_NAME
+        run: docker build --build-args database_url=${{ secrets.DATABASE_URL }} -t $IMAGE_NAME .
 
       - name: Push Docker image
         run: docker push $IMAGE_NAME
