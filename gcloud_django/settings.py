@@ -98,6 +98,8 @@ elif os.getenv("USE_CLOUD_SQL_AUTH_PROXY"):
     DATABASES = {
         'default': env.db()
     }
+    DATABASES["default"]["HOST"] = "127.0.0.1"
+    DATABASES["default"]["PORT"] = 5432
 
 else:
     # Is executed in test environment, hence requires sqlite database
