@@ -16,7 +16,7 @@ RUN python manage.py migrate
 ENV DJANGO_SUPERUSER_EMAIL="admin@admin.com"
 ENV DJANGO_SUPERUSER_USERNAME = "admin"
 ENV DJANGO_SUPERUSER_PASSWORD = "admin"
-RUN python manage.py createsuper --no-input
+RUN python manage.py createsuperuser --no-input
 
 EXPOSE 8080
 ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8080"]
