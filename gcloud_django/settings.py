@@ -13,12 +13,10 @@ from pathlib import Path
 from urllib.parse import urlparse
 import os
 import dj_database_url
-import environ
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env(DEBUG=(bool, True))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -28,12 +26,6 @@ SECRET_KEY = 'django-insecure-jfxp1+qg&8__tbmj3do@9d-8a6wr#o)9p5&9&no0fxa6ut4jgc
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-CLOUDRUN_SERVICE_URL = env('CLOUDRUN_SERVICE_URL', default=None)
-
-if CLOUDRUN_SERVICE_URL:
-    CSRF_TRUSTED_ORIGINS = [CLOUDRUN_SERVICE_URL]
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
@@ -93,13 +85,6 @@ if os.getenv('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.config(conn_max_age=600)
     }
-
-elif os.getenv("USE_CLOUD_SQL_AUTH_PROXY"):
-    DATABASES = {
-        'default': env.db()
-    }
-    DATABASES["default"]["HOST"] = "127.0.0.1"
-    DATABASES["default"]["PORT"] = 5432
 
 else:
     # Is executed in test environment, hence requires sqlite database
