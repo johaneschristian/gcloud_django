@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploy:
-    needs: Test
+    needs: test
     if: github.ref == 'refs/heads/master'
     name: Deploy to Cloud Run
     runs-on: ubuntu-latest
