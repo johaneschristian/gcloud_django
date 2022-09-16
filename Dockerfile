@@ -13,9 +13,9 @@ COPY . $DockerHome
 RUN pip install -r requirements.txt
 RUN python manage.py migrate
 
-ENV DJANGO_SUPERUSER_EMAIL="admin@admin.com"
-ENV DJANGO_SUPERUSER_USERNAME = "admin"
-ENV DJANGO_SUPERUSER_PASSWORD = "admin"
+ENV DJANGO_SUPERUSER_EMAIL=admin@admin.com
+ENV DJANGO_SUPERUSER_USERNAME=admin
+ENV DJANGO_SUPERUSER_PASSWORD=admin
 RUN python manage.py createsuperuser --no-input
 
 EXPOSE 8080
