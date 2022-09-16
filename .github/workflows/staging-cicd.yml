@@ -9,7 +9,7 @@ on:
 
 jobs:
   staging:
-    needs: Test
+    needs: test
     if: github.ref == 'refs/heads/staging'
     name: Staging to Cloud Run
     runs-on: ubuntu-latest
