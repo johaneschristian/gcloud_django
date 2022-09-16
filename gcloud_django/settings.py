@@ -81,9 +81,19 @@ WSGI_APPLICATION = 'gcloud_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=600)
-}
+if os.getenv('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600)
+    }
+
+else:
+    # Is executed in test environment, hence requires sqlite database
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'test_database',
+        }
+    }
 
 
 
