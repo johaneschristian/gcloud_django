@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import hello_world, get_cloud_run_url
+from .views import hello_world, get_cloud_run_url, get_environ
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', hello_world),
     path('cloud-run-url/', get_cloud_run_url),
+    path('environ/', get_environ)
 ]
