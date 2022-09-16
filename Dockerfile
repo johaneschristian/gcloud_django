@@ -11,5 +11,4 @@ COPY . $DockerHome
 RUN pip install -r requirements.txt
 EXPOSE 8080
 
-RUN python manage.py migrate
 ENTRYPOINT ["python", "manage.py", "runserver", "0.0.0.0:8080"]

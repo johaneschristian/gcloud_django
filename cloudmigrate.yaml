@@ -43,7 +43,7 @@ steps:
       ]
 
 substitutions:
-  _INSTANCE_NAME: ppl-testing-database
+  _INSTANCE_NAME: django-instance
   _REGION: us-central1
   _SERVICE_NAME: polls-service
   _SECRET_SETTINGS_NAME: django_settings
